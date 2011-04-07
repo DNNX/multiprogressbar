@@ -1,24 +1,22 @@
  $.fn.progress = function (options)  
 {  
-  var defaults = { Width: 100, InProgress: 0, Completed: 0 };  
+  var defaults = { InProgress: 0, Completed: 0 };  
   var opt = $.extend(defaults, options);  
   
-  function addScale(container, scaleValue, totalWidth, cssClass)  
+  function addScale(container, scaleValue, cssClass)  
   {  
     // Ignore scale when value is zero.  
     if (scaleValue == 0)  
       return;  
   
-    // Calculate scale length.  
-    var scaleLen = totalWidth * scaleValue / 100;  
-  
     // Create scale.  
     var scale = $('<div/>');  
     scale.addClass(cssClass);  
-    scale.css("width", scaleLen + "px");  
+    scale.css("width", scaleValue + "%");  
   
     // Set scale text when possible.  
-    if (scaleLen > 15)  
+    // TODO: scale.width() returns width in percents, not in pixels. This may be wrong.
+    if (scale.width() > 15)  
       scale.html(scaleValue + "%");  
     else  
       scale.html("&nbsp;");  
@@ -42,11 +40,9 @@
   
     // Make container like progress bar.  
     container.addClass("progress");  
-    container.css("width", opt.Width + "px");  
   
-  
-    addScale(container, opt.Completed, opt.Width, "complete");  
-    addScale(container, opt.InProgress, opt.Width, "inprogress");  
+    addScale(container, opt.Completed, "complete");  
+    addScale(container, opt.InProgress, "inprogress");  
   
     // Create corners.  
     container.corner("3px");  
