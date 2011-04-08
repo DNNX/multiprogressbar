@@ -43,8 +43,5 @@
   
     addScale(container, opt.Completed, "complete");  
     addScale(container, opt.InProgress, "inprogress");  
-  
-    // Create corners.  
-    container.corner("3px");  
   });  
 };  

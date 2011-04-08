@@ -6,17 +6,50 @@
     <script src="jquery-1.5.2.js" type="text/javascript"></script>
     <!--script src="http://code.jquery.com/jquery-1.5.2.min.js" type="text/javascript"></script-->
     <script src="multiprogressbar.js" type="text/javascript"></script>
+    
+    <style type="text/css">
+        #container0 { width:50px; }
+        #container1 { width:100px; }
+        #container2 { width:120px; }
+        #container3 { width:140px; }
+        #container4 { width:150px; }
+        #container5 { width:180px; }
+        .progress { margin: 10px; }
+    </style>    
 </head>
 <body>
     <p><a href="http://alevshunov.blogspot.com/2011/04/progressbar.html">Go to the original blog post.</a></p>
-    <div id="container" />
+
+    <div id="container0"></div>
+    <div id="container1"></div>
+    <div id="container2"></div>
+    <div id="container3"></div>
+    <div id="container4"></div>
+    <div id="container5"></div>
 
     <script type="text/javascript">
-        function Init() {
-            $("#container").progress({ Completed: 20, InProgress: 50 });
+        function DoProgress()
+        {
+            for (var i = 0; i <= 5; i++)
+            {
+                var completed = Math.round(Math.random() * 100);
+                var free = (100 - completed);
+                var inProgress = Math.round(Math.random() * free);
+                
+                $("#container" + i).progress(
+                { 
+                    Completed: completed,
+                    InProgress: inProgress
+                });
+            }
+        }            
+
+        function Init()
+        {
+            DoProgress();
         }
 
-        $(document).ready(Init);  
+        $(document).ready(Init);
     </script>
 </body>
 </html>
