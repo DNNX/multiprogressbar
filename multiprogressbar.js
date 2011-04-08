@@ -42,6 +42,10 @@
     container.addClass("progress");  
   
     addScale(container, opt.Completed, "complete");  
-    addScale(container, opt.InProgress, "inprogress");  
+    addScale(container, opt.InProgress, "inprogress");
+    
+    // Create corners.  
+    // TODO: 3px should be in CSS
+    container.corner("3px");  
   });  
 };  
